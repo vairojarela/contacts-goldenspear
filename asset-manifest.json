@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/vairojarela/contacts-goldenspear/static/css/main.e8ef416d.chunk.css",
+    "main.js": "/vairojarela/contacts-goldenspear/static/js/main.ddfc09b3.chunk.js",
+    "main.js.map": "/vairojarela/contacts-goldenspear/static/js/main.ddfc09b3.chunk.js.map",
+    "runtime-main.js": "/vairojarela/contacts-goldenspear/static/js/runtime-main.3bc961d1.js",
+    "runtime-main.js.map": "/vairojarela/contacts-goldenspear/static/js/runtime-main.3bc961d1.js.map",
+    "static/css/2.833dd627.chunk.css": "/vairojarela/contacts-goldenspear/static/css/2.833dd627.chunk.css",
+    "static/js/2.f0ee190d.chunk.js": "/vairojarela/contacts-goldenspear/static/js/2.f0ee190d.chunk.js",
+    "static/js/2.f0ee190d.chunk.js.map": "/vairojarela/contacts-goldenspear/static/js/2.f0ee190d.chunk.js.map",
+    "static/js/3.a7e375cb.chunk.js": "/vairojarela/contacts-goldenspear/static/js/3.a7e375cb.chunk.js",
+    "static/js/3.a7e375cb.chunk.js.map": "/vairojarela/contacts-goldenspear/static/js/3.a7e375cb.chunk.js.map",
+    "static/js/4.bcae1a72.chunk.js": "/vairojarela/contacts-goldenspear/static/js/4.bcae1a72.chunk.js",
+    "static/js/4.bcae1a72.chunk.js.map": "/vairojarela/contacts-goldenspear/static/js/4.bcae1a72.chunk.js.map",
+    "index.html": "/vairojarela/contacts-goldenspear/index.html",
+    "precache-manifest.16f96eba8a513693bbf296d72b920c51.js": "/vairojarela/contacts-goldenspear/precache-manifest.16f96eba8a513693bbf296d72b920c51.js",
+    "service-worker.js": "/vairojarela/contacts-goldenspear/service-worker.js",
+    "static/css/2.833dd627.chunk.css.map": "/vairojarela/contacts-goldenspear/static/css/2.833dd627.chunk.css.map",
+    "static/css/main.e8ef416d.chunk.css.map": "/vairojarela/contacts-goldenspear/static/css/main.e8ef416d.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3bc961d1.js",
+    "static/css/2.833dd627.chunk.css",
+    "static/js/2.f0ee190d.chunk.js",
+    "static/css/main.e8ef416d.chunk.css",
+    "static/js/main.ddfc09b3.chunk.js"
+  ]
+}
