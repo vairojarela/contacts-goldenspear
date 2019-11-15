@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,21 +6,30 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import Contacts from "./components/Contacts";
-import ContactDetails from "./components/ContactDetails";
 import "./App.css";
+import Loading from "./components/Loading";
+import clients from "./clients.json";
+const Contacts = lazy(() => import("./components/Contacts"));
+const ContactDetails = lazy(() => import("./components/ContactDetails"));
 
 function App() {
   return (
     <Router>
-      <div className="container">
-        <div className="row">
-          <Contacts />
-          <Switch>
-            <Route path="/:id" exact component={ContactDetails}></Route>
-          </Switch>
+      <Suspense fallback={<Loading />}>
+        <div className="container">
+          <div className="row">
+            <Contacts clients={clients} />
+            <Switch>
+              <Route
+                path="/:id"
+                render={props => (
+                  <ContactDetails {...props} clients={clients} />
+                )}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </Router>
   );
 }
