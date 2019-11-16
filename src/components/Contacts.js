@@ -1,70 +1,122 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import NavBar from "./NavBar";
+import { Row, Col, Alert, Card, ListGroup, Pagination } from "react-bootstrap";
+import Alphabet from "./Alphabet";
+import clients from "../clients.json";
 
-const Contacts = ({ clients }) => {
-  const alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-  clients.sort((a, b) => a.name.localeCompare(b.name));
-  const [searchTerm, setSearchTerm] = useState("");
-  /*   const [clientsFromProps, setClients] = useState(clients);
-   */
+import React, { Component } from "react";
 
-  const handleChange = event => {
-    if (event.target.value) setSearchTerm(event.target.value);
-    else if (event.target.innerText) setSearchTerm(event.target.innerText);
-    console.log(event.target.innerText);
+clients.sort((a, b) => a.name.localeCompare(b.name));
+
+class Contacts extends Component {
+  state = {
+    allClients: clients,
+    filtered: [],
+    searchTerm: "",
+    letter: ""
   };
 
-  const filteredClients = !searchTerm
-    ? clients
-    : clients.filter(person =>
-        person.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
-      );
-  /* 
-  useEffect(() => {
-    const filteredClients = clientsFromProps.filter(client => {
-      return client.name.toLowerCase().includes(searchTerm);
+  componentDidMount() {
+    this.setState({
+      allClients: clients,
+      filtered: clients.slice(0, 50),
+      offset: 50,
+      pages: 20
     });
+  }
 
-    setClients(filteredClients);
-    //setClients(filteredClients);
-  }, [clientsFromProps, searchTerm]);
- */
-  return (
-    <>
-      <nav className="col-1">
-        {alphabet.map((letter, index) => {
-          return (
-            <div style={alphabetStyles} key={index}>
-              <button onClick={handleChange}>{letter}</button>
-            </div>
-          );
-        })}
-      </nav>
-      <aside className="col-4" style={asideStyles}>
-        <input type="text" onChange={handleChange} placeholder="Search..." />
-        <ul>
-          {filteredClients.map((client, index) => {
-            return (
-              <li key={index}>
-                <Link to={`/` + client.id}>{client.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      </aside>
-    </>
-  );
-};
+  handleButtonClick = event => {
+    const { allClients } = this.state;
+    const letter = event.target.innerText;
+    const startsWithN = allClients.filter(
+      client => client.name.charAt(0) === letter
+    );
 
-const asideStyles = {
-  height: "100%",
-  backgroundColor: "beige"
-};
+    this.setState({
+      filtered: [...startsWithN],
+      letter
+    });
+  };
 
-const alphabetStyles = {
-  textAlign: "center",
-  height: "40px",
-  overflowY: "scroll"
-};
+  handleInputChange = e => {
+    console.log("Contacts search");
+    const { allClients } = this.state;
+    const searchTerm = e.target.value;
+    const filteredClients = allClients.filter(person =>
+      person.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+    );
+    console.log(filteredClients.length);
+    this.setState({
+      searchTerm,
+      filtered: [...filteredClients],
+      pages: Math.ceil(filteredClients.length / 50)
+    });
+  };
+
+  handlePagination = e => {
+    console.log("Pagination CLick");
+    const { filtered } = this.state;
+    console.log(filtered);
+  };
+  /* 
+  handlePageClick = e => {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * this.props.perPage);
+
+    this.setState({ offset: offset }, () => {
+      this.loadCommentsFromServer();
+    });
+  }; */
+
+  render() {
+    console.log("Rendered Contacts");
+    console.log(this.state);
+    const { filtered, searchTerm, letter, pages } = this.state;
+
+    let items = [];
+    for (let number = 1; number <= pages; number++) {
+      items.push(
+        <Pagination.Item onClick={e => this.handlePagination(e)} key={number}>
+          {number}
+        </Pagination.Item>
+      );
+    }
+    return (
+      <Col sm={3} className="no-gutters padding-0 hidden-xs">
+        <NavBar handleInputChange={this.handleInputChange} thisClient={null} />
+        <Row>
+          <Col md={4} className="no-gutters d-xs-none ">
+            {items}
+            <Alphabet
+              letter={letter}
+              handleButtonClick={this.handleButtonClick}
+            />
+          </Col>
+          <Col md={8} className="no-gutters">
+            {filtered.length === 0 ? (
+              <Alert variant="danger" dismissible>
+                <Alert.Heading>
+                  No connections found by "{searchTerm}"
+                </Alert.Heading>
+                <p>Try something else?</p>
+              </Alert>
+            ) : null}
+            <Card>
+              {filtered.map((client, index) => {
+                return (
+                  <ListGroup key={index} variant="flush">
+                    <Link params={{ testvalue: "hello" }} to={`/${client.id}`}>
+                      <ListGroup.Item key={index}>{client.name}</ListGroup.Item>
+                    </Link>
+                  </ListGroup>
+                );
+              })}
+            </Card>
+          </Col>
+        </Row>
+      </Col>
+    );
+  }
+}
 
 export default Contacts;

@@ -2,12 +2,13 @@
   "name": "contacts-goldenspear",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/vairojarela/contacts-goldenspear",
+  "homepage": "https://vairojarela.github.io/contacts-goldenspear",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.1.1",
     "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
