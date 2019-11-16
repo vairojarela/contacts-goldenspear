@@ -1,28 +1,24 @@
 {
   "files": {
-    "main.css": "/contacts-goldenspear/static/css/main.e8ef416d.chunk.css",
-    "main.js": "/contacts-goldenspear/static/js/main.95e399e9.chunk.js",
-    "main.js.map": "/contacts-goldenspear/static/js/main.95e399e9.chunk.js.map",
-    "runtime-main.js": "/contacts-goldenspear/static/js/runtime-main.015c7d8c.js",
-    "runtime-main.js.map": "/contacts-goldenspear/static/js/runtime-main.015c7d8c.js.map",
+    "main.css": "/contacts-goldenspear/static/css/main.68ae6d94.chunk.css",
+    "main.js": "/contacts-goldenspear/static/js/main.449cfc53.chunk.js",
+    "main.js.map": "/contacts-goldenspear/static/js/main.449cfc53.chunk.js.map",
+    "runtime-main.js": "/contacts-goldenspear/static/js/runtime-main.4c8558c5.js",
+    "runtime-main.js.map": "/contacts-goldenspear/static/js/runtime-main.4c8558c5.js.map",
     "static/css/2.833dd627.chunk.css": "/contacts-goldenspear/static/css/2.833dd627.chunk.css",
-    "static/js/2.f0ee190d.chunk.js": "/contacts-goldenspear/static/js/2.f0ee190d.chunk.js",
-    "static/js/2.f0ee190d.chunk.js.map": "/contacts-goldenspear/static/js/2.f0ee190d.chunk.js.map",
-    "static/js/3.bdd100fb.chunk.js": "/contacts-goldenspear/static/js/3.bdd100fb.chunk.js",
-    "static/js/3.bdd100fb.chunk.js.map": "/contacts-goldenspear/static/js/3.bdd100fb.chunk.js.map",
-    "static/js/4.bcae1a72.chunk.js": "/contacts-goldenspear/static/js/4.bcae1a72.chunk.js",
-    "static/js/4.bcae1a72.chunk.js.map": "/contacts-goldenspear/static/js/4.bcae1a72.chunk.js.map",
+    "static/js/2.c42b9f6c.chunk.js": "/contacts-goldenspear/static/js/2.c42b9f6c.chunk.js",
+    "static/js/2.c42b9f6c.chunk.js.map": "/contacts-goldenspear/static/js/2.c42b9f6c.chunk.js.map",
     "index.html": "/contacts-goldenspear/index.html",
-    "precache-manifest.dc2ef0ea87584e02741e4d90c3c48e48.js": "/contacts-goldenspear/precache-manifest.dc2ef0ea87584e02741e4d90c3c48e48.js",
+    "precache-manifest.4be8a936d283397434c9839ce6e57f84.js": "/contacts-goldenspear/precache-manifest.4be8a936d283397434c9839ce6e57f84.js",
     "service-worker.js": "/contacts-goldenspear/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/contacts-goldenspear/static/css/2.833dd627.chunk.css.map",
-    "static/css/main.e8ef416d.chunk.css.map": "/contacts-goldenspear/static/css/main.e8ef416d.chunk.css.map"
+    "static/css/main.68ae6d94.chunk.css.map": "/contacts-goldenspear/static/css/main.68ae6d94.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.015c7d8c.js",
+    "static/js/runtime-main.4c8558c5.js",
     "static/css/2.833dd627.chunk.css",
-    "static/js/2.f0ee190d.chunk.js",
-    "static/css/main.e8ef416d.chunk.css",
-    "static/js/main.95e399e9.chunk.js"
+    "static/js/2.c42b9f6c.chunk.js",
+    "static/css/main.68ae6d94.chunk.css",
+    "static/js/main.449cfc53.chunk.js"
   ]
 }
