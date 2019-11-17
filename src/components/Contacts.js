@@ -89,8 +89,8 @@ class Contacts extends Component {
   render() {
     let { filtered, searchTerm, letter, pages, page } = this.state;
     let renderedClients = [];
-    if (filtered.length > 0) {
-      for (let i = 0; i < 50; i++) {
+    if (!(filtered.length === 0)) {
+      for (let i = 0; i < filtered.length; i++) {
         renderedClients.push(
           <ListGroup key={i} variant="flush">
             <Link to={`/${filtered[i].id}`}>
@@ -105,13 +105,13 @@ class Contacts extends Component {
       <Col sm={3} className="no-gutters padding-0 hidden-xs">
         <NavBar handleInputChange={this.handleInputChange} thisClient={null} />
         <Row>
-          <Col md={4} className="no-gutters d-xs-none ">
+          <Col md={2} className="no-gutters d-xs-none ">
             <Alphabet
               letter={letter}
               handleButtonClick={this.handleButtonClick}
             />
           </Col>
-          <Col md={8} className="no-gutters">
+          <Col md={10} className="no-gutters">
             {filtered.length === 0 ? (
               <Alert variant="danger" dismissible>
                 <Alert.Heading>

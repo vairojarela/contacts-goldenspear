@@ -29,7 +29,6 @@ class ContactDetails extends Component {
   };
 
   componentDidMount() {
-    console.log("mounted");
     const { id } = this.props.match.params;
     let thisClient = clients.find(client => client.id === +id);
     if (!thisClient) return this.setRedirect();
@@ -44,14 +43,11 @@ class ContactDetails extends Component {
   }
 
   handleInputChange = event => {
-    console.log("details search");
     const { connections } = this.state;
     const searchTerm = event.target.value;
-    console.log(connections);
     const filter = connections.filter(person =>
       person.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     );
-    console.log(filter);
     this.setState({
       searchTerm,
       filteredConnections: filter
@@ -61,9 +57,7 @@ class ContactDetails extends Component {
   componentWillReceiveProps(props) {
     const { id } = props.match.params;
     // const { connections } = this.state;
-    console.log("Updated Contact Details Component");
     let thisClient = clients.find(client => client.id === +id);
-    console.log(thisClient);
     const connectionsOfClient = clients.filter(client => {
       if (thisClient.connections.includes(client.id)) return client;
     });
