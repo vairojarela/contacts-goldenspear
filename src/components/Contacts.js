@@ -35,15 +35,20 @@ class Contacts extends Component {
   }
 
   handleButtonClick = event => {
-    const { allClients } = this.state;
-    const letter = event.target.innerText;
+    let { allClients, letter } = this.state;
+    if (event.target.innerText === "#")
+      return this.setState({ filtered: allClients, letter: "#", pages: 20 });
+    else letter = event.target.innerText;
+    const n = event.target.innerText;
+
     const startsWithN = allClients.filter(
       client => client.name.charAt(0) === letter
     );
-
     this.setState({
-      filtered: [...startsWithN],
-      letter
+      filtered: startsWithN,
+      letter: n,
+      pages: Math.ceil(startsWithN.length / 50),
+      page: 1
     });
   };
 
@@ -53,8 +58,8 @@ class Contacts extends Component {
     const filteredClients = allClients.filter(person =>
       person.name.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     );
-    console.log(filteredClients.length);
     this.setState({
+      startsWithN: null,
       offset: 50,
       page: 1,
       searchTerm,
@@ -64,8 +69,12 @@ class Contacts extends Component {
   };
 
   handlePagination = e => {
-    const { allClients, filtered, offset, pages, page } = this.state;
+    const { allClients } = this.state;
+    //Check if its a link
     if (e.target.tagName.toLowerCase() === "a") {
+      /*  if (startsWithN) {
+        this.setState({ filtered: startsWithN.slice(offset, 50) });
+      } */
       this.setState({
         page: +e.target.innerText,
         filtered: allClients.slice(
@@ -77,20 +86,11 @@ class Contacts extends Component {
     }
   };
 
-  next = e => {
-    let { page } = this.state;
-    console.log(page);
-    page++;
-    this.setState({
-      page
-    });
-  };
-
   render() {
-    let { filtered, searchTerm, letter, pages, page } = this.state;
+    let { filtered, searchTerm, letter, pages, page, startsWithN } = this.state;
     let renderedClients = [];
-    if (!(filtered.length === 0)) {
-      for (let i = 0; i < filtered.length; i++) {
+    if (!(filtered.length === 0 && startsWithN)) {
+      for (let i = 0; i < 50 && i < filtered.length; i++) {
         renderedClients.push(
           <ListGroup key={i} variant="flush">
             <Link to={`/${filtered[i].id}`}>
@@ -100,7 +100,6 @@ class Contacts extends Component {
         );
       }
     }
-    console.log(renderedClients);
     return (
       <Col sm={3} className="no-gutters padding-0 hidden-xs">
         <NavBar handleInputChange={this.handleInputChange} thisClient={null} />
@@ -122,31 +121,33 @@ class Contacts extends Component {
             ) : null}
             <Card>{renderedClients}</Card>
           </Col>
-          <Navbar bg="primary">
-            <Pagination>
-              {/*  <Pagination.First />
+          <Col md={10}>
+            <Navbar bg="primary" fixed="bottom" style={{ zIndex: "1000" }}>
+              <Pagination>
+                {/*  <Pagination.First />
             <Pagination.Prev /> */}
-              {/*    {!(page === 1) ? <Pagination.Ellipsis /> : null} */}
-              {Array.apply(null, { length: pages }).map((el, index) => {
-                return (
-                  <Pagination.Item
-                    onClick={e => this.handlePagination(e)}
-                    key={index + 1}
-                    active={index + 1 === page}
-                  >
-                    {index + 1}
-                  </Pagination.Item>
-                );
-              })}
+                {/*    {!(page === 1) ? <Pagination.Ellipsis /> : null} */}
+                {Array.apply(null, { length: pages }).map((el, index) => {
+                  return (
+                    <Pagination.Item
+                      onClick={e => this.handlePagination(e)}
+                      key={index + 1}
+                      active={index + 1 === page}
+                    >
+                      {index + 1}
+                    </Pagination.Item>
+                  );
+                })}
 
-              {/*           <Pagination.Ellipsis onClick={e => this.next(e)} /> */}
-              {/*       <Pagination.Item onClick={e => this.handlePagination(e)}>
+                {/*           <Pagination.Ellipsis onClick={e => this.next(e)} /> */}
+                {/*       <Pagination.Item onClick={e => this.handlePagination(e)}>
               {pages}
             </Pagination.Item> */}
-              {/*      <Pagination.Next />
+                {/*      <Pagination.Next />
             <Pagination.Last /> */}
-            </Pagination>
-          </Navbar>
+              </Pagination>
+            </Navbar>
+          </Col>
         </Row>
       </Col>
     );
