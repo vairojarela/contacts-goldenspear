@@ -88,11 +88,10 @@ class ContactDetails extends Component {
           </Navbar.Brand>
         </Navbar>
         {filteredConnections.length === 0 ? (
-          <Alert variant="danger" dismissible>
-            <Alert.Heading>
-              No connections found by "{searchTerm}"
-            </Alert.Heading>
-            <p>Try something else?</p>
+          <Alert variant="warning">
+            No connections found by "{searchTerm}"<br />
+            <br />
+            Try something else?
           </Alert>
         ) : null}
         <CardColumns>

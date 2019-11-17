@@ -12,12 +12,11 @@ import ContactDetails from "./components/ContactDetails";
 function App() {
   return (
     <Router>
-      <Container fluid>
+      <Container>
         <Switch>
           <Row>
             <Route path={routes.home} component={Contacts}></Route>
-            <Route path={routes.id} exact component={ContactDetails}></Route>
-            <Route component={NotFound}></Route>
+            <Route path={routes.id} component={ContactDetails}></Route>
           </Row>
         </Switch>
       </Container>

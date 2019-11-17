@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import NavBar from "./NavBar";
-import { Row, Col, Alert, Card, ListGroup, Pagination } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Alert,
+  Card,
+  ListGroup,
+  Pagination,
+  Navbar
+} from "react-bootstrap";
 import Alphabet from "./Alphabet";
 import clients from "../clients.json";
 
@@ -10,7 +18,7 @@ clients.sort((a, b) => a.name.localeCompare(b.name));
 
 class Contacts extends Component {
   state = {
-    allClients: clients,
+    allClients: [],
     filtered: [],
     searchTerm: "",
     letter: ""
@@ -19,9 +27,10 @@ class Contacts extends Component {
   componentDidMount() {
     this.setState({
       allClients: clients,
-      filtered: clients.slice(0, 50),
-      offset: 50,
-      pages: 20
+      filtered: clients,
+      offset: 0,
+      page: 1,
+      pages: 19
     });
   }
 
@@ -39,7 +48,6 @@ class Contacts extends Component {
   };
 
   handleInputChange = e => {
-    console.log("Contacts search");
     const { allClients } = this.state;
     const searchTerm = e.target.value;
     const filteredClients = allClients.filter(person =>
@@ -47,46 +55,57 @@ class Contacts extends Component {
     );
     console.log(filteredClients.length);
     this.setState({
+      offset: 50,
+      page: 1,
       searchTerm,
-      filtered: [...filteredClients],
+      filtered: filteredClients,
       pages: Math.ceil(filteredClients.length / 50)
     });
   };
 
   handlePagination = e => {
-    console.log("Pagination CLick");
-    const { filtered } = this.state;
-    console.log(filtered);
+    const { allClients, filtered, offset, pages, page } = this.state;
+    if (e.target.tagName.toLowerCase() === "a") {
+      this.setState({
+        page: +e.target.innerText,
+        filtered: allClients.slice(
+          +e.target.innerText * 50,
+          +e.target.innerText * 50 + 50
+        ),
+        offset: +e.target.innerText * 50
+      });
+    }
   };
-  /* 
-  handlePageClick = e => {
-    let selected = data.selected;
-    let offset = Math.ceil(selected * this.props.perPage);
 
-    this.setState({ offset: offset }, () => {
-      this.loadCommentsFromServer();
+  next = e => {
+    let { page } = this.state;
+    console.log(page);
+    page++;
+    this.setState({
+      page
     });
-  }; */
+  };
 
   render() {
-    console.log("Rendered Contacts");
-    console.log(this.state);
-    const { filtered, searchTerm, letter, pages } = this.state;
-
-    let items = [];
-    for (let number = 1; number <= pages; number++) {
-      items.push(
-        <Pagination.Item onClick={e => this.handlePagination(e)} key={number}>
-          {number}
-        </Pagination.Item>
-      );
+    let { filtered, searchTerm, letter, pages, page } = this.state;
+    let renderedClients = [];
+    if (filtered.length > 0) {
+      for (let i = 0; i < 50; i++) {
+        renderedClients.push(
+          <ListGroup key={i} variant="flush">
+            <Link to={`/${filtered[i].id}`}>
+              <ListGroup.Item key={i}>{filtered[i].name}</ListGroup.Item>
+            </Link>
+          </ListGroup>
+        );
+      }
     }
+    console.log(renderedClients);
     return (
       <Col sm={3} className="no-gutters padding-0 hidden-xs">
         <NavBar handleInputChange={this.handleInputChange} thisClient={null} />
         <Row>
           <Col md={4} className="no-gutters d-xs-none ">
-            {items}
             <Alphabet
               letter={letter}
               handleButtonClick={this.handleButtonClick}
@@ -101,22 +120,45 @@ class Contacts extends Component {
                 <p>Try something else?</p>
               </Alert>
             ) : null}
-            <Card>
-              {filtered.map((client, index) => {
+            <Card>{renderedClients}</Card>
+          </Col>
+          <Navbar bg="primary">
+            <Pagination>
+              {/*  <Pagination.First />
+            <Pagination.Prev /> */}
+              {/*    {!(page === 1) ? <Pagination.Ellipsis /> : null} */}
+              {Array.apply(null, { length: pages }).map((el, index) => {
                 return (
-                  <ListGroup key={index} variant="flush">
-                    <Link params={{ testvalue: "hello" }} to={`/${client.id}`}>
-                      <ListGroup.Item key={index}>{client.name}</ListGroup.Item>
-                    </Link>
-                  </ListGroup>
+                  <Pagination.Item
+                    onClick={e => this.handlePagination(e)}
+                    key={index + 1}
+                    active={index + 1 === page}
+                  >
+                    {index + 1}
+                  </Pagination.Item>
                 );
               })}
-            </Card>
-          </Col>
+
+              {/*           <Pagination.Ellipsis onClick={e => this.next(e)} /> */}
+              {/*       <Pagination.Item onClick={e => this.handlePagination(e)}>
+              {pages}
+            </Pagination.Item> */}
+              {/*      <Pagination.Next />
+            <Pagination.Last /> */}
+            </Pagination>
+          </Navbar>
         </Row>
       </Col>
     );
   }
 }
+/* 
+{
+  filtered.forEach((filtered, index) => (
+    <Pagination.Item onClick={e => this.handlePagination(e)} key={filtered}>
+      {index}
+    </Pagination.Item>
+  ));
+} */
 
 export default Contacts;
