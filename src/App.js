@@ -13,7 +13,11 @@ function App() {
           <Row>
             <Route path={"/"} component={Contacts}></Route>
 
-            <Route path={"/:id"} component={ContactDetails}></Route>
+            <Route
+              path={"/client/:id"}
+              exact
+              component={ContactDetails}
+            ></Route>
           </Row>
         </Switch>
       </Container>
