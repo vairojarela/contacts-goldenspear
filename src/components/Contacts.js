@@ -94,7 +94,7 @@ class Contacts extends Component {
       for (let i = 0; i < 50 && i < filtered.length; i++) {
         renderedClients.push(
           <ListGroup key={i} variant="flush">
-            <Link to={`/${filtered[i].id}`}>
+            <Link to={`/contacts-goldenspear/${filtered[i].id}`}>
               <ListGroup.Item key={i}>{filtered[i].name}</ListGroup.Item>
             </Link>
           </ListGroup>
