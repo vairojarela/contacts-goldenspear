@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/contacts-goldenspear/precache-manifest.61bcef6dd18d72bd6262672ef99065c9.js"
+  "/contacts-goldenspear/precache-manifest.0ba59639320ec41d497225c439daaf18.js"
 );
 
 self.addEventListener('message', (event) => {
