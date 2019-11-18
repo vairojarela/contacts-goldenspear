@@ -2,9 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
-
 import Contacts from "./components/Contacts";
-import routes from "./routes/routes";
 import ContactDetails from "./components/ContactDetails";
 
 function App() {
@@ -13,8 +11,15 @@ function App() {
       <Container>
         <Switch>
           <Row>
-            <Route path={routes.home} component={Contacts}></Route>
-            <Route path={routes.id} component={ContactDetails}></Route>
+            <Route
+              path={process.env.PUBLIC_URL + "/"}
+              component={Contacts}
+            ></Route>
+
+            <Route
+              path={process.env.PUBLIC_URL + "/:id"}
+              component={ContactDetails}
+            ></Route>
           </Row>
         </Switch>
       </Container>
