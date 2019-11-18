@@ -94,7 +94,7 @@ class Contacts extends Component {
       for (let i = 0; i < 50 && i < filtered.length; i++) {
         renderedClients.push(
           <ListGroup key={i} variant="flush">
-            <Link to={`/${filtered[i].id}`}>
+            <Link to={`./${filtered[i].id}`}>
               <ListGroup.Item key={i}>{filtered[i].name}</ListGroup.Item>
             </Link>
           </ListGroup>
@@ -119,15 +119,13 @@ class Contacts extends Component {
                 </Alert.Heading>
                 <p>Try something else?</p>
               </Alert>
-            ) : null}
-            <Card>{renderedClients}</Card>
+            ) : (
+              <Card>{renderedClients}</Card>
+            )}
           </Col>
           <Col md={10}>
             <Navbar bg="primary" fixed="bottom" style={{ zIndex: "1000" }}>
               <Pagination>
-                {/*  <Pagination.First />
-            <Pagination.Prev /> */}
-                {/*    {!(page === 1) ? <Pagination.Ellipsis /> : null} */}
                 {Array.apply(null, { length: pages }).map((el, index) => {
                   return (
                     <Pagination.Item
@@ -139,13 +137,6 @@ class Contacts extends Component {
                     </Pagination.Item>
                   );
                 })}
-
-                {/*           <Pagination.Ellipsis onClick={e => this.next(e)} /> */}
-                {/*       <Pagination.Item onClick={e => this.handlePagination(e)}>
-              {pages}
-            </Pagination.Item> */}
-                {/*      <Pagination.Next />
-            <Pagination.Last /> */}
               </Pagination>
             </Navbar>
           </Col>
@@ -154,13 +145,5 @@ class Contacts extends Component {
     );
   }
 }
-/* 
-{
-  filtered.forEach((filtered, index) => (
-    <Pagination.Item onClick={e => this.handlePagination(e)} key={filtered}>
-      {index}
-    </Pagination.Item>
-  ));
-} */
 
 export default Contacts;
