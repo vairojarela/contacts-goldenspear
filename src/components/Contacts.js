@@ -44,6 +44,7 @@ class Contacts extends Component {
     const startsWithN = allClients.filter(
       client => client.name.charAt(0) === letter
     );
+    console.log(startsWithN);
     this.setState({
       filtered: startsWithN,
       letter: n,
@@ -101,7 +102,7 @@ class Contacts extends Component {
       }
     }
     return (
-      <Col sm={3} className="no-gutters padding-0 hidden-xs">
+      <Col sm={3} className="no-gutters padding-0 d-none d-md-block">
         <NavBar handleInputChange={this.handleInputChange} thisClient={null} />
         <Row>
           <Col md={2} className="no-gutters d-xs-none ">

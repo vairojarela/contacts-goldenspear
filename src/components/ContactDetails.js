@@ -71,7 +71,7 @@ class ContactDetails extends Component {
   render() {
     const { client, filteredConnections, searchTerm } = this.state;
     return (
-      <Col xs={true}>
+      <Col md={true}>
         <NavBar
           handleInputChange={this.handleInputChange}
           thisClient={client}
@@ -104,9 +104,6 @@ class ContactDetails extends Component {
                     <Card.Title>{connection.name}</Card.Title>
                   </Card.Body>
                 </Link>
-                <Card.Body>
-                  <Card.Text>{connection.description}</Card.Text>
-                </Card.Body>
               </Card>
             );
           })}
