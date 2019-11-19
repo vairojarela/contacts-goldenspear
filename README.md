@@ -1,4 +1,4 @@
-#Contacts App
+# Contacts App
 
 Contacts Application with pagination, search bars and independent states for two componentes rendered. This project was done for a technical test at Goldenspear LLC.
 
