@@ -37,14 +37,18 @@ class Contacts extends Component {
   handleButtonClick = event => {
     let { allClients, letter } = this.state;
     if (event.target.innerText === "#")
-      return this.setState({ filtered: allClients, letter: "#", pages: 20 });
+      return this.setState({
+        filtered: allClients,
+        letter: "#",
+        pages: 20,
+        searchTerm: null
+      });
     else letter = event.target.innerText;
     const n = event.target.innerText;
 
     const startsWithN = allClients.filter(
       client => client.name.charAt(0) === letter
     );
-    console.log(startsWithN);
     this.setState({
       searchTerm: letter,
       filtered: startsWithN,
@@ -75,17 +79,17 @@ class Contacts extends Component {
     const { allClients, searchTerm, letter } = this.state;
     //Check if its a link
     let clicked = +e.target.innerText;
-    console.log(clicked);
+
     if (e.target.innerText === "#") {
       return this.setState({
-        filtered: allClients
+        filtered: allClients,
+        searchTerm: null
       });
     }
     if (searchTerm) {
       const startsWithN = allClients.filter(
         client => client.name.charAt(0) === letter
       );
-      console.log(startsWithN);
       return this.setState({
         filtered: startsWithN.slice(clicked * 50, clicked * 50 + 50),
         page: clicked
