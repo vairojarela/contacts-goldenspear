@@ -35,7 +35,7 @@ class Contacts extends Component {
   }
 
   handleButtonClick = event => {
-    let { allClients, letter } = this.state;
+    let { allClients, letter, page } = this.state;
     if (event.target.innerText === "#")
       return this.setState({ filtered: allClients, letter: "#", pages: 20 });
     else letter = event.target.innerText;
@@ -49,6 +49,7 @@ class Contacts extends Component {
       searchTerm: letter,
       filtered: startsWithN,
       letter: n,
+      offset: 50,
       pages: Math.ceil(startsWithN.length / 50),
       page: 0
     });
@@ -71,24 +72,30 @@ class Contacts extends Component {
   };
 
   handlePagination = e => {
-    const { allClients, page, searchTerm } = this.state;
+    const { allClients, page, searchTerm, filtered, letter } = this.state;
     //Check if its a link
     let clicked = +e.target.innerText;
+    console.log(clicked);
     if (e.target.innerText === "#") {
-      this.setState({
-        filtered: allClients
-      });
-    }
-    if (searchTerm) {
-      console.log("runs");
       return this.setState({
         filtered: allClients
       });
     }
+    if (searchTerm) {
+      const startsWithN = allClients.filter(
+        client => client.name.charAt(0) === letter
+      );
+      console.log(startsWithN);
+      return this.setState({
+        filtered: startsWithN.slice(clicked * 50, clicked * 50 + 50),
+        page: clicked
+      });
+    }
     if (e.target.tagName.toLowerCase() === "a") {
-      this.setState({
+      return this.setState({
         filtered: allClients.slice(clicked * 50, clicked * 50 + 50),
-        offset: clicked * 50
+        offset: clicked * 50,
+        page: clicked
       });
     }
   };
