@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/contacts-goldenspear/static/css/main.6dae558b.chunk.css",
-    "main.js": "/contacts-goldenspear/static/js/main.658d5180.chunk.js",
-    "main.js.map": "/contacts-goldenspear/static/js/main.658d5180.chunk.js.map",
+    "main.js": "/contacts-goldenspear/static/js/main.2ab6e037.chunk.js",
+    "main.js.map": "/contacts-goldenspear/static/js/main.2ab6e037.chunk.js.map",
     "runtime-main.js": "/contacts-goldenspear/static/js/runtime-main.4c8558c5.js",
     "runtime-main.js.map": "/contacts-goldenspear/static/js/runtime-main.4c8558c5.js.map",
     "static/css/2.833dd627.chunk.css": "/contacts-goldenspear/static/css/2.833dd627.chunk.css",
-    "static/js/2.3164649d.chunk.js": "/contacts-goldenspear/static/js/2.3164649d.chunk.js",
-    "static/js/2.3164649d.chunk.js.map": "/contacts-goldenspear/static/js/2.3164649d.chunk.js.map",
+    "static/js/2.5983887b.chunk.js": "/contacts-goldenspear/static/js/2.5983887b.chunk.js",
+    "static/js/2.5983887b.chunk.js.map": "/contacts-goldenspear/static/js/2.5983887b.chunk.js.map",
     "index.html": "/contacts-goldenspear/index.html",
-    "precache-manifest.7e4b4227dc5560a468619fcaad26caff.js": "/contacts-goldenspear/precache-manifest.7e4b4227dc5560a468619fcaad26caff.js",
+    "precache-manifest.fd624bf32b9cea57c1dcda5c194fdfe2.js": "/contacts-goldenspear/precache-manifest.fd624bf32b9cea57c1dcda5c194fdfe2.js",
     "service-worker.js": "/contacts-goldenspear/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/contacts-goldenspear/static/css/2.833dd627.chunk.css.map",
     "static/css/main.6dae558b.chunk.css.map": "/contacts-goldenspear/static/css/main.6dae558b.chunk.css.map"
@@ -17,8 +17,8 @@
   "entrypoints": [
     "static/js/runtime-main.4c8558c5.js",
     "static/css/2.833dd627.chunk.css",
-    "static/js/2.3164649d.chunk.js",
+    "static/js/2.5983887b.chunk.js",
     "static/css/main.6dae558b.chunk.css",
-    "static/js/main.658d5180.chunk.js"
+    "static/js/main.2ab6e037.chunk.js"
   ]
 }
