@@ -20,7 +20,7 @@ class Contacts extends Component {
   state = {
     allClients: [],
     filtered: [],
-    searchTerm: "",
+    searchTerm: null,
     letter: ""
   };
 
@@ -29,8 +29,8 @@ class Contacts extends Component {
       allClients: clients,
       filtered: clients,
       offset: 0,
-      page: 1,
-      pages: 19
+      page: 0,
+      pages: 20
     });
   }
 
@@ -46,10 +46,11 @@ class Contacts extends Component {
     );
     console.log(startsWithN);
     this.setState({
+      searchTerm: letter,
       filtered: startsWithN,
       letter: n,
       pages: Math.ceil(startsWithN.length / 50),
-      page: 1
+      page: 0
     });
   };
 
@@ -62,7 +63,7 @@ class Contacts extends Component {
     this.setState({
       startsWithN: null,
       offset: 50,
-      page: 1,
+      page: 0,
       searchTerm,
       filtered: filteredClients,
       pages: Math.ceil(filteredClients.length / 50)
@@ -70,19 +71,24 @@ class Contacts extends Component {
   };
 
   handlePagination = e => {
-    const { allClients } = this.state;
+    const { allClients, page, searchTerm } = this.state;
     //Check if its a link
-    if (e.target.tagName.toLowerCase() === "a") {
-      /*  if (startsWithN) {
-        this.setState({ filtered: startsWithN.slice(offset, 50) });
-      } */
+    let clicked = +e.target.innerText;
+    if (e.target.innerText === "#") {
       this.setState({
-        page: +e.target.innerText,
-        filtered: allClients.slice(
-          +e.target.innerText * 50,
-          +e.target.innerText * 50 + 50
-        ),
-        offset: +e.target.innerText * 50
+        filtered: allClients
+      });
+    }
+    if (searchTerm) {
+      console.log("runs");
+      return this.setState({
+        filtered: allClients
+      });
+    }
+    if (e.target.tagName.toLowerCase() === "a") {
+      this.setState({
+        filtered: allClients.slice(clicked * 50, clicked * 50 + 50),
+        offset: clicked * 50
       });
     }
   };
@@ -123,24 +129,31 @@ class Contacts extends Component {
               <Card>{renderedClients}</Card>
             )}
           </Col>
-          <Col md={10}>
-            <Navbar bg="primary" fixed="bottom" style={{ zIndex: "1000" }}>
-              <Pagination>
-                {Array.apply(null, { length: pages }).map((el, index) => {
-                  return (
-                    <Pagination.Item
-                      onClick={e => this.handlePagination(e)}
-                      key={index + 1}
-                      active={index + 1 === page}
-                    >
-                      {index + 1}
-                    </Pagination.Item>
-                  );
-                })}
-              </Pagination>
-            </Navbar>
-          </Col>
         </Row>
+        <Navbar
+          style={{
+            position: "fixed",
+            bottom: "0",
+            width: "100%",
+            zIndex: "1000"
+          }}
+          bg="dark"
+          sticky="bottom"
+        >
+          <Pagination size="sm">
+            {Array.apply(null, { length: pages }).map((el, index) => {
+              return (
+                <Pagination.Item
+                  onClick={e => this.handlePagination(e)}
+                  key={index}
+                  active={index === page}
+                >
+                  {index}
+                </Pagination.Item>
+              );
+            })}
+          </Pagination>
+        </Navbar>
       </Col>
     );
   }

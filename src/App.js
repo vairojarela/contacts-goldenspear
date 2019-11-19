@@ -8,7 +8,6 @@ import ContactDetails from "./components/ContactDetails";
 function App() {
   return (
     <HashRouter basename="/">
-      >
       <Container>
         <Switch>
           <Row>
