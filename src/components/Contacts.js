@@ -35,7 +35,7 @@ class Contacts extends Component {
   }
 
   handleButtonClick = event => {
-    let { allClients, letter, page } = this.state;
+    let { allClients, letter } = this.state;
     if (event.target.innerText === "#")
       return this.setState({ filtered: allClients, letter: "#", pages: 20 });
     else letter = event.target.innerText;
@@ -72,7 +72,7 @@ class Contacts extends Component {
   };
 
   handlePagination = e => {
-    const { allClients, page, searchTerm, filtered, letter } = this.state;
+    const { allClients, searchTerm, letter } = this.state;
     //Check if its a link
     let clicked = +e.target.innerText;
     console.log(clicked);

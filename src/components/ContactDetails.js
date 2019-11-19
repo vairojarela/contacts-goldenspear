@@ -82,7 +82,7 @@ class ContactDetails extends Component {
   }
 
   handlePagination = e => {
-    const { allClients, filteredConnections, connections } = this.state;
+    const { connections } = this.state;
     //Check if its a link
 
     if (e.target.tagName.toLowerCase() === "a") {
@@ -99,8 +99,7 @@ class ContactDetails extends Component {
 
   render() {
     const { client, filteredConnections, searchTerm, connections } = this.state;
-    let { filtered, letter, pages, page, startsWithN } = this.state;
-    let renderedClients = [];
+    let { pages, page } = this.state;
 
     return (
       <Col md={true}>
